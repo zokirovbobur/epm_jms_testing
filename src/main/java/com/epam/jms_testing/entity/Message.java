@@ -16,4 +16,8 @@ public class Message {
   @Id @GeneratedValue
   private int id;
   private String content;
+
+  public Message(String content) {
+    this.content = content;
+  }
 }

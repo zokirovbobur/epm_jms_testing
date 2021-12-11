@@ -7,7 +7,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/transaction")
+@RequestMapping("/message")
 public class MessageController {
 
   private static final Logger log = LoggerFactory.getLogger(MessageController.class);
@@ -19,18 +19,18 @@ public class MessageController {
   }
 
   @PostMapping("/send")
-  public void send(@RequestBody Message transaction) {
-    log.info("Sending a transaction.");
+  public void send(@RequestBody Message message) {
+    log.info("Sending a message.");
     jmsTemplate.convertAndSend(
-        "MessageQueue", transaction);
+        "MessageQueue", message);
   }
 
   @GetMapping("/test")
   public void test() {
-    Message transaction = new Message();
-    transaction.setContent("Hello brother");
-    log.info("Sending a transaction.");
+    Message message = new Message();
+    message.setContent("Hello brother");
+    log.info("Sending a message.");
     jmsTemplate.convertAndSend(
-            "MessageQueue", transaction);
+            "MessageQueue", message);
   }
 }
